@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # ファイルサイズ表示
-cd ~/cleanup
+current_path=$(pwd)
 ./display_cache.sh
 
 echo '\n\n###'
@@ -14,7 +14,6 @@ echo '# Adobeのキャッシュ'
 cd ~/Library/Application\ Support/Adobe/Common/
 sudo rm -rf Media\ Cache/* 2>/dev/null
 sudo rm -rf Media\ Cache\ Files/* 2>/dev/null
-cd ~/cleanup_cache
 
 echo '# Dockerキャッシュ'
 sudo rm -rf ~/Library/Containers/com.docker.docker/Data/* 2>/dev/null
@@ -48,6 +47,7 @@ xcrun simctl delete unavailable
 echo '###'
 echo '# 削除後'
 echo '-----'
+cd $current_path
 ./display_cache.sh
 
 echo finish.
